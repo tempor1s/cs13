@@ -17,13 +17,24 @@ def decode(digits, base):
     return: int -- integer representation of number (in base 10)"""
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
-    # TODO: Decode digits from binary (base 2)
-    # ...
-    # TODO: Decode digits from hexadecimal (base 16)
-    # ...
-    # TODO: Decode digits from any base (2 up to 36)
-    # ...
-    return int(digits, base)
+    # LMAOOO
+    # return int(digits, base) # i feel like this was cheating... haha
+
+    decoded_val = 0  # final return value
+    # Get the power of the right most digit (highest power)
+    power = len(digits) - 1
+    # string of digits (0-9 + a-z)
+    convert_string = string.digits + string.ascii_lowercase
+    # loop through the digits
+    for i in digits:
+        # decode the current digit
+        decoded_digit = (convert_string.index(i) * pow(base, power))
+        # add that value to our total
+        decoded_val += decoded_digit
+
+        power -= 1  # decrease the power by 1
+
+    return decoded_val  # return the final total of all of the digits
 
 
 def encode(number, base):
