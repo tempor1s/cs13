@@ -34,12 +34,18 @@ def encode(number, base):
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
     # Handle unsigned numbers only for now
     assert number >= 0, 'number is negative: {}'.format(number)
-    # TODO: Encode number in binary (base 2)
-    # ...
-    # TODO: Encode number in hexadecimal (base 16)
-    # ...
-    # TODO: Encode number in any base (2 up to 36)
-    # ...
+
+    # convert_string = 0-9 + a-z
+    convert_string = string.digits + string.ascii_lowercase
+    # If the number is less than the base, just return the index of that character
+    # because strings can be indexed like arrays to get the char at that position
+    if number < base:
+        return convert_string[number]
+    # Otherwise, divide the number by the base to be the new number, and pass
+    # it and the base into encode recursivly Also add that string + the remainder
+    # of the current number % the base
+    else:
+        return encode(number // base, base) + convert_string[number % base]
 
 
 def convert(digits, base1, base2):
@@ -71,10 +77,13 @@ def main():
         base2 = int(args[2])
         # Convert given digits between bases
         result = convert(digits, base1, base2)
-        print('{} in base {} is {} in base {}'.format(digits, base1, result, base2))
+        print('{} in base {} is {} in base {}'.format(
+            digits, base1, result, base2))
     else:
         print('Usage: {} digits base1 base2'.format(sys.argv[0]))
         print('Converts digits from base1 to base2')
+    val = encode(10, 2)
+    print(val)
 
 
 if __name__ == '__main__':
