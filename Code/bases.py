@@ -9,6 +9,10 @@ import string
 # string.ascii_letters is ascii_lowercase + ascii_uppercase
 # string.printable is digits + ascii_letters + punctuation + whitespace
 
+# thanks kevin
+CONVERT_STRING = string.digits + string.ascii_lowercase
+BASE_DECODE = {digit: val for val, digit in enumerate(CONVERT_STRING)}
+
 
 def decode(digits, base):
     """Decode given digits in given base to number in base 10.
@@ -20,21 +24,25 @@ def decode(digits, base):
     # LMAOOO
     # return int(digits, base) # i feel like this was cheating... haha
 
-    decoded_val = 0  # final return value
-    # Get the power of the right most digit (highest power)
-    power = len(digits) - 1
-    # string of digits (0-9 + a-z)
-    convert_string = string.digits + string.ascii_lowercase
-    # loop through the digits
-    for i in digits:
-        # decode the current digit
-        decoded_digit = (convert_string.index(i) * pow(base, power))
-        # add that value to our total
-        decoded_val += decoded_digit
+    # my decode
+    # decoded_val = 0  # final return value
+    # power = len(digits) - 1
+    # # loop through the digits
+    # for i in digits:
+    #     # decode the current digit
+    #     decoded_digit = (CONVERT_STRING.index(i) * pow(base, power))
+    #     # add that value to our total
+    #     decoded_val += decoded_digit
 
-        power -= 1  # decrease the power by 1
+    #     power -= 1  # decrease the power by 1
 
-    return decoded_val  # return the final total of all of the digits
+    # return decoded_val  # return the final total of all of the digits
+
+    # kevins godlike decode
+    decoded = 0
+    for i, digit in enumerate(reversed(digits)):
+        decoded += pow(base, i) * BASE_DECODE[digit]
+    return decoded
 
 
 def encode(number, base):
@@ -47,17 +55,12 @@ def encode(number, base):
     # Handle unsigned numbers only for now
     assert number >= 0, 'number is negative: {}'.format(number)
 
-    # convert_string = 0-9 + a-z
-    convert_string = string.digits + string.ascii_lowercase
-    # If the number is less than the base, just return the index of that character
-    # because strings can be indexed like arrays to get the char at that position
     if number < base:
-        return convert_string[number]
-    # Otherwise, divide the number by the base to be the new number, and pass
-    # it and the base into encode recursivly Also add that string + the remainder
-    # of the current number % the base
-    else:
-        return encode(number // base, base) + convert_string[number % base]
+        return CONVERT_STRING[number]
+
+    div, mod = divmod(number, base)
+
+    return encode(div, base) + CONVERT_STRING[mod]
 
 
 def convert(digits, base1, base2):
