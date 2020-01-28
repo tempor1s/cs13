@@ -10,7 +10,10 @@ def linear_search(array, item):
 
 
 def linear_search_iterative(array, item):
-    # loop over all array values until item is found
+    # Time Complexity!
+    # Best: O(1) - First elemenet
+    # Average: O(n) - Have to loop through every element in the array
+    # Worst: O(n) - Have to loop through every element in the array
     for index, value in enumerate(array):
         if item == value:
             return index  # found
@@ -18,7 +21,10 @@ def linear_search_iterative(array, item):
 
 
 def linear_search_recursive(array, item, index=0):
-    # We got to the end and it was not found
+    # Time Complexity!
+    # Best: O(1) - First elemenet
+    # Average: O(n) - Have to loop through every element in the array
+    # Worst: O(n) - Have to loop through every element in the array
     if index > len(array) - 1:
         return None
 
@@ -30,8 +36,6 @@ def linear_search_recursive(array, item, index=0):
 
 def binary_search(array, item):
     """return the index of item in sorted array or None if item is not found"""
-    # implement binary_search_iterative and binary_search_recursive below, then
-    # change this to call your implementation to verify it passes all tests
     low = 0
     high = len(array)-1
     return binary_search_recursive(array, item, low, high)
@@ -39,6 +43,10 @@ def binary_search(array, item):
 
 
 def binary_search_iterative(array, item):
+    # Time Complexity!
+    # Best: O(1) - Middle element is the item
+    # Average: O(log(n)) - Because we halve the working array every time
+    # Worst: O(log(n)) - Even if it is the last possible iteration, it will still be log(n) time
     low = 0
     high = len(array) - 1
     mid = None
@@ -54,7 +62,11 @@ def binary_search_iterative(array, item):
     return None
 
 
-def binary_search_recursive(array, item, low=0, high=0):
+def binary_search_recursive(array, item, low, high):
+    # Time Complexity!
+    # Best: O(1) - Middle element is the item
+    # Average: O(log(n)) - Because we halve the working array every time
+    # Worst: O(log(n)) - Even if it is the last possible iteration, it will still be log(n) time
     if low > high:
         return None
     mid = (low + high) // 2
