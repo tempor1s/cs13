@@ -6,3 +6,4 @@ install:
 script:
     - pytest Code/bases_test.py
     - pytest Code/recursion_test.py
+    - pytest Code/search_test.py
