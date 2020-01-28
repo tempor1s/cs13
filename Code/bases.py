@@ -41,7 +41,7 @@ def decode(digits, base):
     # kevins godlike decode
     decoded = 0
     for i, digit in enumerate(reversed(digits)):
-        decoded += pow(base, i) * BASE_DECODE[digit]
+        decoded += (pow(base, i) * BASE_DECODE[digit])
     return decoded
 
 
@@ -92,6 +92,9 @@ def main():
         print('Usage: {} digits base1 base2'.format(sys.argv[0]))
         print('Converts digits from base1 to base2')
     val = encode(10, 2)
+    print(val)
+
+    val = decode("ff", 16)
     print(val)
 
 
