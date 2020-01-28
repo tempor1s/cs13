@@ -1,11 +1,12 @@
 #!python
 
+
 def linear_search(array, item):
     """return the first index of item in array or None if item is not found"""
     # implement linear_search_iterative and linear_search_recursive below, then
     # change this to call your implementation to verify it passes all tests
-    return linear_search_iterative(array, item)
-    # return linear_search_recursive(array, item)
+    # return linear_search_iterative(array, item)
+    return linear_search_recursive(array, item)
 
 
 def linear_search_iterative(array, item):
@@ -17,10 +18,14 @@ def linear_search_iterative(array, item):
 
 
 def linear_search_recursive(array, item, index=0):
-    # TODO: implement linear search recursively here
-    pass
-    # once implemented, change linear_search to call linear_search_recursive
-    # to verify that your recursive implementation passes all tests
+    # We got to the end and it was not found
+    if index > len(array) - 1:
+        return None
+
+    if item == array[index]:
+        return index
+
+    return linear_search_recursive(array, item, index + 1)
 
 
 def binary_search(array, item):
