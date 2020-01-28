@@ -36,9 +36,7 @@ def linear_search_recursive(array, item, index=0):
 
 def binary_search(array, item):
     """return the index of item in sorted array or None if item is not found"""
-    low = 0
-    high = len(array)-1
-    return binary_search_recursive(array, item, low, high)
+    return binary_search_recursive(array, item)
     # return binary_search_recursive(array, item)
 
 
@@ -62,17 +60,23 @@ def binary_search_iterative(array, item):
     return None
 
 
-def binary_search_recursive(array, item, low, high):
+def binary_search_recursive(array, item):
     # Time Complexity!
     # Best: O(1) - Middle element is the item
     # Average: O(log(n)) - Because we halve the working array every time
     # Worst: O(log(n)) - Even if it is the last possible iteration, it will still be log(n) time
+    low = 0
+    high = len(array) - 1
+    return binary_search_helper(array, item, low, high)
+
+
+def binary_search_helper(array, item, low, high):
     if low > high:
         return None
     mid = (low + high) // 2
     if array[mid] < item:
-        return binary_search_recursive(array, item, mid + 1, high)
+        return binary_search_helper(array, item, mid + 1, high)
     elif array[mid] > item:
-        return binary_search_recursive(array, item, low, mid - 1)
+        return binary_search_helper(array, item, low, mid - 1)
     else:
         return mid
