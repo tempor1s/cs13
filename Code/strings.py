@@ -5,13 +5,18 @@ def contains(text, pattern):
     """Return a boolean indicating whether pattern occurs in text."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-    # return pattern in text
+    # check if the pattern is an empty string and return True if so
     if pattern == '':
         return True
+    # loop through the text keeping the index and current character
     for i, character in enumerate(text):
+        # check if the character is the same as the beginning of the pattern
         if character == pattern[0]:
+            # check that if the characters starting at character to the length of the pattern is equal to the pattern
             if text[i:i + len(pattern)] == pattern:
+                # return the True if the patterns match
                 return True
+    # return False if no patterns match
     return False
 
 
@@ -42,14 +47,21 @@ def find_all_indexes(text, pattern):
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
 
+    # check if the pattern is an empty string and return a list of all the indexes if true
     if pattern == '':
         return [i for i in range(len(text))]
 
+    # list of indexes to return
     indexes = []
+    # loop through the text keeping the index and current character
     for i, character in enumerate(text):
+        # check if the character is the same as the beginning of the pattern
         if character == pattern[0]:
+            # check that if the characters starting at character to the length of the pattern is equal to the pattern
             if text[i:i + len(pattern)] == pattern:
+                # append the index to the list to return
                 indexes.append(i)
+    # return the list of indexes
     return indexes
 
 
