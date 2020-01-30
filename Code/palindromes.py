@@ -18,13 +18,29 @@ def is_palindrome(text):
     # return is_palindrome_recursive(text)
 
 
+# def is_palindrome_iterative(text):
+#     text_lower = re.sub("[ ,.;:?!]", "", text.lower())
+#     lower_reversed = text_lower[::-1]
+#     if text_lower == lower_reversed:
+#         return True
+#     else:
+#         return False
+
 def is_palindrome_iterative(text):
-    text_lower = re.sub("[ ,.;:?!]", "", text.lower())
-    lower_reversed = text_lower[::-1]
-    if text_lower == lower_reversed:
-        return True
-    else:
-        return False
+    # clean the text with a joined filter
+    clean_text = ''.join(filter(
+        lambda character: character not in " ,.;:?!", text.lower()))
+
+    # get the length so we dont need to calculate twice
+    length = len(clean_text)
+
+    # loop through half the array
+    for i in range(length//2):
+        # check if the index we are at is not same in the second half of the array going in reverse
+        if clean_text[i] != clean_text[length-(i + 1)]:
+            return False
+    # the string is a palindrome if we never return false
+    return True
 
 
 def is_palindrome_recursive(text, left=None, right=None):
