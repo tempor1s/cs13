@@ -5,7 +5,14 @@ def contains(text, pattern):
     """Return a boolean indicating whether pattern occurs in text."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-    return pattern in text
+    # return pattern in text
+    if pattern == '':
+        return True
+    for i, character in enumerate(text):
+        if character == pattern[0]:
+            if text[i:i + len(pattern)] == pattern:
+                return True
+    return False
 
 
 def find_index(text, pattern):
