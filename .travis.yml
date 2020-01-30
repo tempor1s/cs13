@@ -8,3 +8,4 @@ script:
     - pytest Code/recursion_test.py
     - pytest Code/search_test.py
     - pytest Code/palindromes_test.py
+    - pytest Code/strings_test.py
