@@ -17,7 +17,7 @@ def is_palindrome(text):
     # return is_palindrome_iterative(text)
     return is_palindrome_recursive(text)
 
-
+# a cool version that uses regex
 # def is_palindrome_iterative(text):
 #     text_lower = re.sub("[ ,.;:?!]", "", text.lower())
 #     lower_reversed = text_lower[::-1]
@@ -25,6 +25,7 @@ def is_palindrome(text):
 #         return True
 #     else:
 #         return False
+
 
 # my version
 def is_palindrome_iterative(text):
@@ -44,6 +45,7 @@ def is_palindrome_iterative(text):
     return True
 
 
+# my version
 def is_palindrome_recursive(text):
     # clean up the text
     clean_text = ''.join(filter(
@@ -64,6 +66,16 @@ def _palindrome_helper(text):
         else:
             # return false
             return False
+
+
+# def _palindrome_helper(text, left, right, length):
+#     if length < 1:
+#         return True
+#     else:
+#         if text[left] == text[right]:
+#             return _palindrome_helper(text, left+1, right-1, length-1)
+#         else:
+#             return False
 
 
 def main():

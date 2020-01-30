@@ -1,5 +1,6 @@
 #!python
 
+
 def contains(text, pattern):
     """Return a boolean indicating whether pattern occurs in text."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
@@ -12,7 +13,20 @@ def find_index(text, pattern):
     or None if not found."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-    # TODO: Implement find_index here (iteratively and/or recursively)
+
+    # check if the pattern is an empty string and return 0 if so
+    if pattern == '':
+        return 0
+    # loop through the text keeping the index and current character
+    for i, character in enumerate(text):
+        # check if the character is the same as the beginning of the pattern
+        if character == pattern[0]:
+            # check that if the characters starting at character to the length of the pattern is equal to the pattern
+            if text[i:i + len(pattern)] == pattern:
+                # return the index if the patterns match
+                return i
+    # return None if no patterns match
+    return None
 
 
 def find_all_indexes(text, pattern):
@@ -24,14 +38,14 @@ def find_all_indexes(text, pattern):
 
 
 def test_string_algorithms(text, pattern):
-    found = contains(text, pattern)
-    print('contains({!r}, {!r}) => {}'.format(text, pattern, found))
+    # found = contains(text, pattern)
+    # print('contains({!r}, {!r}) => {}'.format(text, pattern, found))
     # TODO: Uncomment these lines after you implement find_index
     index = find_index(text, pattern)
     print('find_index({!r}, {!r}) => {}'.format(text, pattern, index))
     # TODO: Uncomment these lines after you implement find_all_indexes
-    indexes = find_all_indexes(text, pattern)
-    print('find_all_indexes({!r}, {!r}) => {}'.format(text, pattern, indexes))
+    # indexes = find_all_indexes(text, pattern)
+    # print('find_all_indexes({!r}, {!r}) => {}'.format(text, pattern, indexes))
 
 
 def main():
