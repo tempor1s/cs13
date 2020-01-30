@@ -14,8 +14,8 @@ def is_palindrome(text):
     # implement is_palindrome_iterative and is_palindrome_recursive below, then
     # change this to call your implementation to verify it passes all tests
     assert isinstance(text, str), 'input is not a string: {}'.format(text)
-    return is_palindrome_iterative(text)
-    # return is_palindrome_recursive(text)
+    # return is_palindrome_iterative(text)
+    return is_palindrome_recursive(text)
 
 
 # def is_palindrome_iterative(text):
@@ -26,10 +26,11 @@ def is_palindrome(text):
 #     else:
 #         return False
 
+# my version
 def is_palindrome_iterative(text):
-    # clean the text with a joined filter
+    # clean the text with a joined filter (remove punctuation)
     clean_text = ''.join(filter(
-        lambda character: character not in " ,.;:?!", text.lower()))
+        lambda character: character not in " ,.;:?!-_'", text.lower()))
 
     # get the length so we dont need to calculate twice
     length = len(clean_text)
@@ -43,11 +44,26 @@ def is_palindrome_iterative(text):
     return True
 
 
-def is_palindrome_recursive(text, left=None, right=None):
-    # TODO: implement the is_palindrome function recursively here
-    pass
-    # once implemented, change is_palindrome to call is_palindrome_recursive
-    # to verify that your iterative implementation passes all tests
+def is_palindrome_recursive(text):
+    # clean up the text
+    clean_text = ''.join(filter(
+        lambda character: character not in " ,.;:?!-_'", text.lower()))
+
+    return _palindrome_helper(clean_text)
+
+
+def _palindrome_helper(text):
+    # If the length of the text is less than 1 return true, because it is a palindrome and we do not want to go out of range
+    if len(text) < 1:
+        return True
+    else:
+        # check if the left most and right most characters are the same
+        if text[0] == text[-1]:
+            # return the string but with those two characters removed
+            return _palindrome_helper(text[1:-1])
+        else:
+            # return false
+            return False
 
 
 def main():
