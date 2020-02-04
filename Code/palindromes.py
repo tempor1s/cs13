@@ -31,8 +31,7 @@ def is_palindrome(text):
 def is_palindrome_iterative(text):
     # clean the text with a joined filter (remove punctuation)
     clean_text = ''.join(filter(
-        lambda character: character not in " ,.;:?!-_'", text.lower()))
-
+        lambda character: character not in " " + string.punctuation, text.lower()))
     # get the length so we dont need to calculate twice
     length = len(clean_text)
 
@@ -49,7 +48,7 @@ def is_palindrome_iterative(text):
 def is_palindrome_recursive(text):
     # clean up the text
     clean_text = ''.join(filter(
-        lambda character: character not in " ,.;:?!-_'", text.lower()))
+        lambda character: character not in " " + string.punctuation, text.lower()))
 
     return _palindrome_helper(clean_text)
 
