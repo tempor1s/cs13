@@ -34,6 +34,9 @@ class LinkedList(object):
         """Return a string representation of this linked list."""
         return 'LinkedList({!r})'.format(self.items())
 
+    def __len__(self):
+        return self.length()
+
     def items(self):
         """Return a list of all items in this linked list.
         Best and worst case running time: Theta(n) for n items in the list
@@ -64,7 +67,7 @@ class LinkedList(object):
         """Return the item at the given index in this linked list, or
         raise ValueError if the given index is out of range of the list size.
         Best case running time: Omega(1) If index is a low value, meaning that it is near to the head and requires minimal "hops".
-        Worst case running time: O(n) We have to loop to the last item in the linked list, because we are not allowed to hope indexes in linked lists."""
+        Worst case running time: O(i) If we are inserting anywhere other than above, it will require us to loop until we hit the length of index."""
         # Check if the given index is out of range and if so raise an error
         if not (0 <= index < self.size):
             raise ValueError(f'List index out of range: {index}')
@@ -78,11 +81,10 @@ class LinkedList(object):
             node = node.next
 
     def insert_at_index(self, index, item):
-        # TODO: Optimizations where we check to see if the index is the length of the tail
         """Insert the given item at the given index in this linked list, or
         raise ValueError if the given index is out of range of the list size.
         Best case running time: Omega(1)  If index is a low value or at the head/tail, it requires minimal steps to insert an item.
-        Worst case running time: O(n) If we are inserting anywhere other than above, it will require us to loop until we hit that index.
+        Worst case running time: O(i) If we are inserting anywhere other than above, it will require us to loop until we hit the length of index.
 
         We could add additional optimations by checking if the index is closer to head or tail if this was a doubly linked list."""
         # Check if the given index is out of range and if so raise an error
@@ -118,7 +120,7 @@ class LinkedList(object):
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
-        Best and worst case running time: Omega(1) because we keep track of the tail, so it requires minimal operations to append."""
+        Best and worst case running time: Omega(1) Average because we keep track of the tail, so it requires minimal operations to append."""
         # Create a new node to hold the given item
         new_node = Node(item)
         # Check if this linked list is empty
@@ -170,7 +172,7 @@ class LinkedList(object):
         """Replace the given old_item in this linked list with given new_item
         using the same node, or raise ValueError if old_item is not found.
         Best case running time: Omega(1) The value that we are replacing is near the head node.
-        Worst case running time: O(n) We have to loop through each node to find the item, and there is 
+        Worst case running time: O(n) We have to loop through each node to find the item, and there is
         a chance that it is not found meaning we need to loop through all nodes to make sure.
         """
         # reference to head

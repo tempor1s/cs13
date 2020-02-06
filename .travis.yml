@@ -10,3 +10,4 @@ script:
     - pytest Code/palindromes_test.py
     - pytest Code/strings_test.py
     - pytest Code/linkedlist_test.py
+    - pytest Code/queue_test.py
