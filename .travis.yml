@@ -11,3 +11,4 @@ script:
     - pytest Code/strings_test.py
     - pytest Code/linkedlist_test.py
     - pytest Code/queue_test.py
+    - pytest Code/stack_test.py
