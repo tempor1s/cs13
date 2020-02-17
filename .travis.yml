@@ -12,3 +12,4 @@ script:
     - pytest Code/linkedlist_test.py
     - pytest Code/queue_test.py
     - pytest Code/stack_test.py
+    - pytest Code/hashtable_test.py
