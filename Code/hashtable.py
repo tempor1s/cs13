@@ -19,6 +19,9 @@ class HashTable(object):
         """Return a string representation of this hash table."""
         return 'HashTable({!r})'.format(self.items())
 
+    def __len__(self):
+        return self.length()
+
     def _bucket_index(self, key):
         """Return the bucket index where the given key would be stored."""
         return hash(key) % len(self.buckets)
@@ -26,7 +29,7 @@ class HashTable(object):
     def load_factor(self):
         """Return the load factor, the ratio of number of entries to buckets.
         Best and worst case running time: O(1) because we already keep size / len of buckets"""
-        return self.size / len(self.buckets)
+        return len(self) / len(self.buckets)
 
     def keys(self):
         """Return a list of all keys in this hash table.
@@ -37,6 +40,11 @@ class HashTable(object):
             for key, value in bucket.items():
                 all_keys.append(key)
         return all_keys
+        # lc = [item for key in self.buckets.items() for  ]
+        # lc = [[key for key, value in self.buckets[i].items()][0] for i in range(
+        #     len(self.buckets)) if len(self.buckets[i]) > 0] if self.length() > 0 else []
+
+        # return lc
 
     def values(self):
         """Return a list of all values in this hash table.

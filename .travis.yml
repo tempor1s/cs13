@@ -13,3 +13,4 @@ script:
     - pytest Code/queue_test.py
     - pytest Code/stack_test.py
     - pytest Code/hashtable_test.py
+    - pytest Code/binarytree_test.py
