@@ -193,10 +193,26 @@ class BinarySearchTree(object):
     def delete(self, item):
         """Remove given item from this tree, if present, or raise ValueError.
         O(1) The item is at the root.
-        O(h) With H being the height of the BST, we would have to loop to the height of the tree."""
-        # TODO: Use helper methods and break this algorithm down into 3 cases
-        # based on how many children the node containing the given item has and
-        # implement new helper methods for subtasks of the more complex cases
+        O(n * v) With H being the height of the BST, we would have to loop to the height of the tree."""
+        return self._delete_helper(self.root, item)
+
+    def _delete_helper(self, node, item):
+        if node is None:
+            return None
+
+        if item < node.data:
+            node.left = self._delete_helper(node, item)
+        elif item > node.data:
+            node.right = self._delete_helper(node, item)
+        else:
+            if node.left is None:
+                tmp_node = node.right
+                node = None
+                return tmp_node
+            elif node.right is None:
+                tmp_node = node.left
+                node = None
+                return tmp_node
 
     def items_in_order(self):
         """Return an in-order list of all items in this binary search tree."""
@@ -210,7 +226,7 @@ class BinarySearchTree(object):
     def _traverse_in_order_recursive(self, node, visit):
         """Traverse this binary tree with recursive in-order traversal (DFS).
         Start at the given node and visit each node with the given function.
-        O(n) because we need to look through every item in the BST"""
+        O(n * v) because we need to visit every item in the BST"""
         if node.left:
             self._traverse_in_order_recursive(node.left, visit)
         visit(node.data)
@@ -220,7 +236,7 @@ class BinarySearchTree(object):
     def _traverse_in_order_iterative(self, node, visit):
         """Traverse this binary tree with iterative in-order traversal (DFS).
         Start at the given node and visit each node with the given function.
-        O(n) because we need to look through every item in the BST
+        O(n * v) because we need to look through every item in the BST
         TODO: Memory usage: ??? Why and under what conditions?"""
         # TODO: Traverse in-order without using recursion (stretch challenge)
 
