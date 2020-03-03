@@ -49,10 +49,6 @@ class HashSet(object):
 
     def is_subset(self, other_set):
         """return a boolean indicating whether other_set is a subset of this set""" 
-        if self.size > other_set.size:
-            # the given set is smaller then self set, therefor it is impossible to be a subset
-            return False
-
         for item in other_set.items():
             if not self.contains(item):
                 # An item in our set is not in the given set
