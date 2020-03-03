@@ -52,6 +52,7 @@ class BasesDecodeTest(unittest.TestCase):
         assert decode('deadbeef', 16) == 3735928559
         assert decode('f007ba11', 16) == 4027038225
 
+
     def test_decode_10(self):
         assert decode('10', 2) == 2
         assert decode('10', 4) == 4
