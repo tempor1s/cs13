@@ -26,8 +26,6 @@ class SetTest(unittest.TestCase):
     def test_get(self):
         hs = HashSet([1, 2, 3])
         assert hs.get(2) == 2
-        with self.assertRaises(KeyError):
-            hs.get(4)
 
     def test_contains(self):
         hs = HashSet([1, 2, 3])
