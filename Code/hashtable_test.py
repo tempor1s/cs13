@@ -2,10 +2,6 @@
 
 from hashtable import HashTable
 import unittest
-# Python 2 and 3 compatibility: unittest module renamed this assertion method
-if not hasattr(unittest.TestCase, 'assertCountEqual'):
-    unittest.TestCase.assertCountEqual = unittest.TestCase.assertItemsEqual
-
 
 class HashTableTest(unittest.TestCase):
 
@@ -107,8 +103,6 @@ class HashTableTest(unittest.TestCase):
         assert ht.get('X') == 10
         assert ht.length() == 3
         assert ht.size == 3
-        with self.assertRaises(KeyError):
-            ht.get('A')  # Key does not exist
 
     def test_set_twice_and_get(self):
         ht = HashTable()
