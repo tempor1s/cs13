@@ -4,14 +4,4 @@ python:
 install:
     - pip install -r requirements.txt
 script:
-    - pytest Code/bases_test.py
-    - pytest Code/recursion_test.py
-    - pytest Code/search_test.py
-    - pytest Code/palindromes_test.py
-    - pytest Code/strings_test.py
-    - pytest Code/linkedlist_test.py
-    - pytest Code/queue_test.py
-    - pytest Code/stack_test.py
-    - pytest Code/hashtable_test.py
-    - pytest Code/binarytree_test.py
-    - pytest Code/sets_test.py
+    - pytest
