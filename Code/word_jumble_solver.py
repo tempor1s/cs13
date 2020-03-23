@@ -49,6 +49,6 @@ class Solver(object):
 
 if __name__ == "__main__":
     solver = Solver()
-    words = ['shast', 'doore', 'ditnic', 'catili'] 
+    words = ['crtolualca'] 
     solved_words = solver.solve_words(words)
     print(solved_words)

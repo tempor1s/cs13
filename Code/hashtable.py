@@ -22,6 +22,9 @@ class HashTable(object):
     def __len__(self):
         return self.length()
 
+    def __contains__(self, key):
+        return self.get(key)
+
     def _bucket_index(self, key):
         """Return the bucket index where the given key would be stored."""
         return hash(key) % len(self.buckets)
@@ -103,7 +106,7 @@ class HashTable(object):
             assert len(entry) == 2
             return entry[1]
         else:  # Not found
-            raise KeyError('Key not found: {}'.format(key))
+            return None
 
     def set(self, key, value):
         """Insert or update the given key with its associated value.
